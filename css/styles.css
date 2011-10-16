@@ -1,0 +1,937 @@
+/***************************COMMON FOR WHOLE PAGE************************************/
+*{margin:0px;padding:0px;}	
+html,body {
+	background:#FFFFFF;
+	font:75%;
+	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+	overflow:hidden;
+	}
+img{border:none;}
+.hide {display:none;}
+.clear{clear:both;}
+pageContainer{
+	position:relative;
+	width:100%;
+	overflow:hidden;
+	}
+/***************************end common for whole page************************************/
+
+/***************************HEAD/MENU/CMDBUTTON BAR************************************/
+div#headContainer{
+	position:relative;
+	width:100%;
+	margin:0;
+	height:150px;
+	background-color: #282828;
+	width:100%;
+	background:-webkit-gradient(linear,	left bottom,left top,color-stop(0.2, rgb(39,38,34)),color-stop(0.8, rgb(50,50,50)));
+	background: -moz-linear-gradient(center bottom,	rgb(39,38,34) 20%,rgb(50,50,50) 80%);
+	}
+	
+	
+	#logo{
+		position:absolute;
+		 /*24px; 32px*/
+		left:47px; /*50% margin-left:-65px; */
+		top:0;
+		width:150px;
+		height:32px;
+		color:#FFF;
+		font:bold 1.8em/26px 'Trebuchet MS',Trebuchet,Arial,sans-serif;
+		letter-spacing:-0.02em;
+		padding:20px 0 22px; /*7px 0 22px*/
+		text-shadow:1px 1px 3px #111;
+		cursor:default;	
+		}
+		#logo span{color: #FFC806; 	}
+		/*
+		#logo #flow,#logo #nx{float:left; margin-top:0px}
+		#logo #nx{color: #FFC806;}
+		#logo #flow{padding-top:6px;}
+		*/
+	#userNav{
+		position:absolute;
+		right:5px;
+		top:5px;
+		width:236px;
+		height:32px;
+		font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;
+		font-size: 0.8em;
+		color:#AAA;
+		}
+		#userNav a{color:#2A7AD2;}
+		#userNav a:hover{color:#FFF;}
+		#userNav span{color:#555;}
+	#menuBtn{
+		position:absolute;
+		right:5px;
+		top:58px;
+		width:159px;
+		height:32px;
+		}
+		#menuBtn img{padding: 2px; 	-moz-border-radius: 3px; border-radius:3px;}
+		#menuBtn img:hover{background: #444;}
+	#tab{position:absolute;	bottom:0;width:100%;}
+		#tabThumbnailContainer{	
+			position:relative;
+			left: 30px;
+			height:28px;
+			overflow:hidden;
+			}
+			#thumbScrollLeft{
+				float:left;
+				background: url(../images/thumb-scroll-left.png) center center no-repeat;
+				}
+			#thumbScrollLeft:hover{background:url(../images/thumb-scroll-left-hover.png) center center no-repeat;}
+			#thumbScrollRight{
+				float:right;
+				background: url(../images/thumb-scroll-right.png) center center no-repeat;
+				}
+			#thumbScrollRight:hover{background: url(../images/thumb-scroll-right-hover.png) center center no-repeat;}
+			.thumbScroll{
+				height:100%; 
+				width:18px;
+				}
+			/*#thumbList{
+				position:relative;
+				float:left; 
+				overflow:hidden;
+				height:100%
+				}
+			*/
+			#thumbList{
+				position:absolute; 
+				top:0;
+				left:18px;
+				overflow:hidden;
+				height:100%;
+				width:300px;
+				}
+			#tabThumbnail{
+				position:absolute; 
+				top:0;
+				left:0; 
+				height:28px;
+				width: 8000px;
+				}
+			#tabThumbnailContainer li{
+				color:#EEE;
+				display: inline-block;
+				list-style:none;
+				margin-right:2px;
+				padding: 6px 8px;
+				-moz-border-radius-topleft: 4px;
+				-moz-border-radius-topright: 4px;
+				border-top-left-radius: 4px;
+				border-top-right-radius: 4px;
+				background: #444;
+				font-size:13px;
+				cursor:default;	
+				}
+			/*#tabThumbnailContainer li:hover{background: #555;	}*/
+			#tabThumbnailContainer .hover{background: #555;	}
+			#tabThumbnailContainer .activeTab{background: #266DBB;}
+		#tabTitle {
+			position:relative;
+			background-color:#5D9ADF;
+			border-top:4px solid #266DBB;
+			border-bottom:1px solid #2A7AD2;
+			width:100%;
+			height:50px;
+			background: -webkit-gradient(linear,left bottom,left top,color-stop(0.2, rgb(80,146,220)),color-stop(0.8, rgb(107,163,226)));
+			background: -moz-linear-gradient(center bottom,	rgb(80,146,220) 20%,rgb(107,163,226) 80%);
+			top:-2px;
+			}
+			div#cmdBtnBar{
+				position:absolute;
+				top:10px;
+				right:0px;
+				width:662px;
+				height:35px;
+				overflow:hidden;
+				padding-left:12px;
+				/*border-left: solid 1px #266DBB;*/
+				}
+				.cmdBtn{
+					float:left;
+					height:36px;
+					width: 36px;
+					text-align:center;
+					overflow:hidden;
+					margin-left:-6px;
+					margin-top:-1px;
+					cursor:default;
+					}
+					div#cmdBtnBar #schema2GraphBtn{
+						padding-right:4px;
+						margin-right:8px;
+						border-right: solid 1px #266DBB;
+						}
+					div#cmdBtnBar #expression2SchemaBtn{margin-left:-2px;}
+					div#cmdBtnBar #schema2ValBtn{margin-left:-4px;}
+					div#cmdBtnBar #schema2Script{margin-left:-4px;}
+					div#cmdBtnBar #schema2ExpressionBtn{margin-left:-3px;}
+					div#schema2ExpressionTxt{
+						float:left;
+						height:28px;
+						width: 474px;
+						text-align:center;
+						background: #FFFFFF;
+						overflow:hidden;
+						padding-top:0px;
+						margin-right:2px;
+						margin-right:6px;
+						margin-top:0px;
+						font-size:12px;
+						background:#EEEEEE;
+						border:solid 1px;
+						border-color:#555 #AAA #AAA #555;
+						}
+						div#schema2ExpressionTxt input{
+							text-align:center;
+							background:#EEEEEE;
+							height:100%;
+							//padding-top:6px;
+							//padding-bottom:2px;
+							}
+				#nodeCmdBtnBar{
+					position:absolute;
+					left:14px;
+					top:9px;
+					width:118px;
+					height:32px;
+					}
+					#nodeCmdBtnBar img{	margin-left: -2px;padding-right:3px;}
+					img#paste{margin-left: -4px	}		
+					img#cut{border-left:1px solid #266DBB;padding-left:8px;	}
+					img#paste{padding-right:4px;}
+/***************************head/menu/cmdbutton bar************************************/
+
+/***************************CONTENT CONTAINER************************************/
+div#contentContainer{
+	position:relative;	
+	width:100%;
+	margin: 0;
+	font-family: Arial,Tahoma, Tunga,Gautami,Mangal,Myriad Pro,Myriad Pro Light, Helvetica, Sans-Serif;
+	color:#000000;
+	text-align:center;
+	overflow:hidden;
+	top:-2px;
+	}
+/***************************end content container************************************/
+
+/***************************DIAGRAM/SCHEMA************************************/
+div#diagramContainer{
+	position:absolute;
+	top:0px;
+	left:0px;
+	z-index:500;
+	}
+	#diagramCanvas{
+		position:absolute;
+		top:0px;
+		left:0px;
+		}
+	div#diagram{
+		position:absolute;
+		top:0px;
+		left:0px;
+		width:795px;
+		height:700px;
+		overflow:hidden;
+		z-index:506;
+		
+		}
+		div.nodeWrapper{
+			position:absolute;
+			top:0px;
+			left:0px;
+			}
+		div.node{
+			position:relative;
+			top:0px;
+			left:0px;
+			width:100px;
+			height:60px;
+			border:solid 1px;
+			border-color:#BBB; 
+			/*border-color:#CCCCCC #BBBBBB #A0A0A0;*/
+			-moz-border-radius:8px;
+			border-radius:8px;
+			overflow: hidden;
+			}
+		div.node-selected{
+			border:solid 2px #000;
+			margin-top:-1px;
+			margin-left:-1px;
+			-moz-border-radius:9px;
+			border-radius:9px;
+			/*
+			border-color:#a3fdfe #78fafc #a3fdfe #94fdfe;
+			*/
+			}
+			div.nodeHeader{
+				height:18px;
+				cursor:move;
+				/*background:-moz-linear-gradient(right center , #f1f4f9, #adcbff);
+				background:-moz-linear-gradient(left center, blue, #f1f4f9);
+				background:blue;
+				*/
+				-moz-border-radius:7px 7px 0px 0px;
+				border-top-left-radius:7px;
+				border-top-right-radius:7px;
+				text-align:center;
+				color:white;
+				padding-top:3px;
+				}
+			div.nodeHeader-selected{
+				-moz-border-radius:6px 6px 0px 0px;
+				border-top-left-radius:6px;
+				border-top-right-radius:6px;
+				text-align:center;
+				color:white;
+				padding-top:3px;
+				}
+				.nodeHeader span{
+					margin-top:30px;
+					}					
+				.nodeFlag{
+					float:right;
+					margin-top:2px;
+					margin-right:3px;
+					}					
+			div.nodeContent{
+				margin-top: -1px;
+				background: yellow;
+				}
+				div.left{
+					float:left;
+					width:49%;
+					height:20px;
+					border 1px solid #CCCCCC;
+					text-align:left;
+					}
+				div.right{
+					float:left;
+					width:49%;
+					height:20px;
+					border 1px solid #CCCCCC;
+					text-align:left;
+					}
+				div.input-selected{
+					color: #3c918e;
+					}
+				div.parent{
+					float:right;
+					height:20px;
+					border 1px solid #CCCCCC;
+					text-align:right;
+					}
+	/*=====This comon for div#diagramContainer*/
+	div.node div.left,div.node div.right,div.node div.parent{
+		cursor:default;
+	}
+	span{
+		/*
+		font-size:12px;
+		*/
+		}
+	
+	div.node{
+		-moz-user-select: none;
+		-webkit-user-select:none;
+		/*
+		box-shadow: 2px 2px #CCCCCC;
+		-webkit-box-shadow: 2px 2px #CCCCCC;
+		-moz-box-shadow: 2px 2px #CCCCCC;
+		*/
+		}
+	/*====End comon for div#diagramContainer*/						
+/***************************end diagram/schema************************************/
+
+/***************************TOOL BOX************************************/		
+div#toolBox{
+	position:absolute;
+	top:2px;
+	left:-154px;
+	width:150px;
+	background:-moz-linear-gradient(right center, #E1F1FF 10%, #F5FAFF 80%) repeat scroll 0 0 transparent;
+	background:-webkit-gradient(linear,right top,left top,color-stop(0.1, #E1F1FF),color-stop(0.8, #F5FAFF));
+	/*border-top:1px solid #C4E3FF;
+	border-bottom:1px solid #C4E3FF;
+	border-left:1px solid #C4E3FF;
+	border-right:3px solid rgb(80,146,220);*/
+	border:2px solid #266DBB;/*C4E3FF;*/
+	text-align:left;
+	font-size:12px;
+	z-index:520;
+	padding-bottom: 28px;
+	padding-top: 5px;
+	}
+	div#toolBoxHandle{
+	  /* rotate -90 deg, not sure if a negative number is supported so I used 270 */
+		position:absolute;
+		left: 126px;
+		top:23px; /*41*/
+		width: 66px;
+		background:#266DBB;
+		/*
+		background: -webkit-gradient(linear,left bottom,left top,color-stop(0.2, #5e9ce2),color-stop(0.8, #9ec8f2));
+		background: -moz-linear-gradient(center bottom,	#5e9ce2 20%,#9ec8f2 80%	);
+		*/
+		-moz-border-radius-topleft:4px;
+		-moz-border-radius-topright:4px;
+		border-top-left-radius: 4px;
+		border-top-right-radius: 4px;
+		text-align:center;
+		font-family:Arial,Tahoma,Tunga,Gautami,Mangal,Myriad Pro,Myriad Pro Light,Helvetica,Sans-Serif;
+		/*
+		font-size:11px;
+		color:#DDD;
+		*/
+		-moz-transform: rotate(90deg);
+		-moz-transform-origin: 50% 50%;
+		-webkit-transform: rotate(90deg);
+		-webkit-transform-origin: 50% 50%;
+		
+		padding:6px 8px;
+		font-size:13px;
+		color:#EEEEEE;
+		}
+	
+	div#toolBoxHandle:hover,#propBoxHandle:hover{
+		color:white;
+		}
+	
+	div#toolBoxHandle span, #propBoxHandle span{
+		color:yellow;
+		font-size:9px;
+		cursor:move;
+		}
+	div#toolBox .boxContent{
+		margin-top: 5px;
+		height:98%;
+		overflow:auto;
+		}
+	div.toolList{
+		background:url(../images/node-colapse.png) center left no-repeat;
+		padding-left:25px;
+		cursor:default;
+		font-weight:bold;
+		color:#333;
+		}
+	div.colapse{
+		background:url(../images/node-expand.png) center left no-repeat;
+		}
+		div.toolItem{
+			background:url(../images/sub-node1.png) center left no-repeat;
+			padding-left:45px;
+			cursor:default;
+			}
+			div#param_number_0_outNum_
+			, div#input_number_0_outNum_
+			, div#param_number_0_outNum_pi_
+			, div#operator_2_subtract_inNum_outNum_
+			, div#function_logic_2_xor_inBool_outBool_{
+				background:url(../images/sub-node2.png) center left no-repeat;
+				}
+			div#program_output_1_{
+				background:url(../images/sub-node3.png) center left no-repeat;
+				}
+			div#program_1_, div#program_input_1_{
+				background:url(../images/sub-node4.png) center left no-repeat;
+				}
+				
+/***************************end tool box************************************/
+
+/***************************PROPERTIES BOX************************************/
+div#properties{
+	position:absolute;
+	top:2px;
+	right:-304px;
+	width:300px;
+	background:-moz-linear-gradient(left center , #E1F1FF 10%, #F5FAFF 80%) repeat scroll 0 0 transparent;
+	background:-webkit-gradient(linear,left top,right top,color-stop(0.1, #E1F1FF),color-stop(0.8, #F5FAFF));
+	border:2px solid #266DBB; /*C4E3FF;
+	border-bottom:1px solid #C4E3FF;
+	border-top:1px solid #C4E3FF;
+	border-right:1px solid #C4E3FF;*/
+	z-index:540;
+	padding-bottom:5px;
+	}
+	div#propBoxHandle{
+	  /* rotate -90 deg, not sure if a negative number is supported so I used 270 */
+		position:absolute;
+		/*left: -60px;*/
+		left: -58px;
+		/*top:41px;*/
+		top:23px;
+		width: 66px;
+		background:#266DBB;
+		/*
+		background: -webkit-gradient(linear,left bottom,left top,color-stop(0.2, #5e9ce2),color-stop(0.8, #9ec8f2));
+		background: -moz-linear-gradient(center bottom,	#5e9ce2 20%,#9ec8f2 80%	);
+		*/
+		-moz-border-radius-topleft:4px;
+		-moz-border-radius-topright:4px;
+		border-top-left-radius: 4px;
+		border-top-right-radius: 4px;
+		text-align:center;
+		font-family:Arial,Tahoma,Tunga,Gautami,Mangal,Myriad Pro,Myriad Pro Light,Helvetica,Sans-Serif;
+		font-size:11px;
+		color:#DDD;
+		-moz-transform: rotate(270deg);
+		-moz-transform-origin: 50% 50%;
+		-webkit-transform: rotate(270deg);
+		-webkit-transform-origin: 50% 50%;
+		padding:6px 8px;
+		font-size:13px;
+		color:#EEEEEE;
+		-moz-user-selection:none;
+		-webkit-user-selection:none;
+		}	
+	div#properties .boxContent{
+		margin-top: 5px;
+		padding-left: 6px;
+		height:91%;
+		width:96%;
+		
+		overflow:hidden;
+		text-align:left;
+		font-size:12px;
+		}
+	div#properties div.propertiesList{
+		background:url(../images/property-colapse.png) center left no-repeat;
+		padding:1px 0px 1px 15px;
+		cursor:default;
+		overflow:hidden;
+		margin-top:5px;
+		}
+	div#properties div.propertiesList p{
+		font-weight:bold;
+		color:#333;
+		}
+	div#properties div.colapse{
+		background:url(../images/property-expand.png) center left no-repeat;
+		}
+		div#properties .propertiesListRow{
+			height:15px;
+			margin: 2px 0px 0px 10px;
+			width:96%;
+			overflow:hidden;
+			}
+		div#properties .propItemTitle,div#properties .propItemVal{
+			float:left;
+			margin-right:1px;
+			}
+		div#properties .propItemTitle{
+			width:48%;
+			-moz-user-selection:none;
+			-webkit-user-selection:none;
+			}
+			div#properties .propItemTitle p{
+				padding-left:5px;
+				cursor:default;
+				-moz-user-selection:none;
+				-webkit-user-selection:none;
+				}
+		div#properties .propItemVal{
+			width:50%;
+			}
+			div#properties .propItemVal select{
+				margin-top:-1px;
+				border:none;
+				}
+	.color{
+		font-size:12px;
+		}
+	input, select{
+		font-size:12px;
+		border:none;
+		width:100%;
+		}
+	#propBtnCmd{
+		margin-top:5px;
+		height:25px;
+		width: 98%;
+		-moz-user-selection:none;
+		-webkit-user-selection:none;
+	}
+		#applyProp, #cancelProp{
+			text-align:center;
+			float:right;
+			height:20px;
+			width: 55px;
+			overflow:hidden;
+			padding-top:5px;
+			margin-left:2px;
+			cursor:default;
+			border:1px #e1f1ff solid;
+		}
+		#applyProp:hover, #cancelProp:hover{
+			border:1px solid #CCC;
+		}
+		#propBtnCmd .clickBtn{
+			background: url(../images/properties-btn-click.jpg) center center repeat-x;
+		}
+		#propBtnCmd .normalBtn{
+			background: url(../images/properties-btn.jpg) center center repeat-x;
+		}
+	#nodePropertiesList .groupPropertiesList, #pagePropertiesList .groupPropertiesList{
+		position:relative;
+		}
+	#nodePropertiesList .activeDisableList, #pagePropertiesList .activeDisableList{
+		position:absolute;
+		top:0px;
+		left:15px;
+		width:93%;
+		height:100%;
+		opacity:0.5;
+		background:#CCCCCC;
+		}
+#lockDiagram{
+	opacity: 0.5;
+	filter:alpha(opacity=50);
+	position: absolute;
+	top:0px;
+	left:0px;
+	width:500px;
+	height:500px;
+	background:#FFFFFF;
+	cursor:not-allowed;
+	z-index:530;
+	}
+#contentBgColor{
+	background:#FFFFFF;
+	}
+/***************************end properties box************************************/
+
+/***************************MOVABLE BOX************************************/
+div.boxTitle{
+	position:absolute;
+	top:0px;
+	left:0px;
+	height:20px;
+	width:100%;
+	background:-moz-linear-gradient(center bottom , #5092DC 20%, #6BA3E2 80%) repeat scroll 0 0 transparent;
+	background:-webkit-gradient(linear,left bottom,left top,color-stop(0.1, #5092DC),color-stop(0.8, #6BA3E2));
+	cursor:default;
+	}	
+div.boxTitleLeft{
+	position:absolute;
+	top:0px;
+	left:0px;
+	height:20px;
+	width:30%;
+	background:url(../images/title-left.jpg) center left  no-repeat;
+	}	
+div.boxTitleRight{
+	position:absolute;
+	top:0px;
+	right:0px;
+	height:20px;
+	width:30%;
+	background:url(../images/title-right.jpg) center right  no-repeat;
+	}	
+div.boxClose{
+	position:absolute;
+	top:0px;
+	right:2px;
+	height:20px;
+	width:20px;
+	cursor:default;
+	}
+div.closeUp{
+	background:url(../images/close-up.png) center center  no-repeat;
+	}
+div.openDown{
+	background:url(../images/open-down.png) center center  no-repeat;
+	}
+		
+p.boxTitleTxt{
+	position:absolute;
+	top:0px;
+	left:5px;
+	text-align:left;
+	font-weight:bold;
+	font-size:12px;
+	color:white;
+	margin-top:2px;
+	}	
+div.leftBorder{
+	position:absolute;
+	top:0px;
+	left:0px;
+	height:100%;
+	width:4px;
+	background:url(../images/border-left.jpg) center right  repeat-y;
+	}	
+div.rightBorder{
+	position:absolute;
+	top:0px;
+	right:0px;
+	height:100%;
+	width:4px;
+	background:url(../images/border-right.jpg) center right  repeat-y;
+	}	
+div.bottomBorder{
+	position:absolute;
+	bottom:0px;
+	right:0px;
+	height:4px;
+	width:100%;
+	background:url(../images/border-bottom.jpg) center center repeat-x;
+	}	
+/***************************end movable box************************************/
+
+/***************************OTHERS************************************/
+div#addingNode{/*This is use as customized mouse icon*/
+	position:absolute;
+	top:100px;
+	left:100px;
+	height:26px;
+	width:22px;
+	background:url(../images/adding-node.png) center center no-repeat;
+	display:none;
+	z-index:538;
+	}
+div#output{
+	position:absolute;
+	bottom:0;
+	left:0;
+	height:53px;
+	width:100%;
+	background:-moz-linear-gradient(center bottom , #E1F1FF 10%, #F5FAFF 80%);
+	background:-webkit-gradient(linear,left bottom ,left top,color-stop(0.1, #E1F1FF),color-stop(0.8, #F5FAFF)) ;
+	border-bottom:1px solid #C4E3FF;
+	border-top:4px solid #6BA3E2;/*C4E3FF;*/
+	overflow:hidden;
+	z-index:535;
+	padding-left: 10px;
+	font-size:14px;
+}
+div#output p{
+	padding-right:285px;
+	padding-top:5px;
+}
+.outputHighlight{
+	color:red;
+}	
+div#footer{
+	position:absolute;
+	bottom:0;
+	right:0;
+	height:24px;
+	width:100%;
+	/*
+	background:-moz-linear-gradient(center bottom , #FFF 0%, #F2F2F2 100%);
+	background:-webkit-gradient(linear,left bottom ,left top,color-stop(0, #FFF),color-stop(1, #F2F2F2)) ;
+	border-bottom:0px solid #C4E3FF;
+	border-top:2px solid #dedede;/*C4E3FF;*/
+	*/
+	border-top:1px solid #dedede;/*C4E3FF;*/
+	z-index:539;
+	font-size:12px;
+	color:#acacaf;
+	text-align:right;
+	margin-right:5px;
+}
+div#footer a{
+	/*text-decoration:none;
+	*/
+	color:#acacaf;
+}
+div#footer a:hover{
+	color:#444;
+}
+
+/***************************end others************************************/
+
+
+/***************************NEW/OPEN/SAVE/CLOSE SCHEMA, COPY/PASTE/DELETE NODE DIALOG************************************/
+#dialogWrapper{
+	position: absolute;
+	top:0;
+	left:0;
+	width:100%;
+	height:100%;
+	background:#333;
+	opacity:0.2;
+	z-index:600;
+	}
+	.ui-dialog{ 
+		border: solid 2px rgb(80,146,220);/*rgb(107,163,226);*/ 
+		background:#FFF; 
+		z-index:686; 
+		-moz-border-radius: 6px;
+		border-radius: 3px;
+		padding:0;
+		}		
+	.ui-dialog label, #dialog-form input { display:block; }
+	.ui-dialog input.text { margin-bottom:12px; width:95%; padding: .4em; }
+	.ui-dialog fieldset { padding:0; border:0; margin-top:25px; }
+	.ui-dialog h1 { font-size: 1.2em; margin: .6em 0; }
+	.ui-dialog .ui-dialog .ui-state-error { padding: .3em; }
+	.ui-dialog .validateTips {
+		border: 1px solid transparent; 
+		padding: 0.3em; 
+		font-weight:normal; 
+		padding-left:0; 
+		margin-left:-1px
+		}
+	.ui-dialog .ui-state-highlight {color: red; }
+	.ui-dialog .ui-state-error {background: #eee; color:#000 }
+	.ui-dialog .ui-dialog-buttonpane{
+		background:-moz-linear-gradient(center bottom , #E1F1FF 10%, #FFF 100%) repeat scroll 0 0 transparent;
+		background:-webkit-gradient(linear,left bottom ,left top,color-stop(0.1, #E1F1FF),color-stop(1, #FFF)) repeat scroll 0 0 transparent;
+		border-top: solid 1px rgb(107,163,226); 
+		border:none;
+		}
+	.ui-dialog a.ui-dialog-titlebar-close{display:none;}
+	.ui-dialog .ui-dialog-titlebar{
+		height:25px;
+		background: -webkit-gradient(linear,left bottom,left top,color-stop(0.2, rgb(107,163,226)),color-stop(0.8, rgb(80,146,220) ));
+		background: -moz-linear-gradient(center bottom,rgb(107,163,226) 20%,rgb(80,146,220) 80%);
+		-moz-border-radius:0;
+		border-radius:0;
+		border:none;
+		padding:0.2em 0.4em;
+		padding-bottom: 0;
+		}
+	.ui-dialog .ui-dialog-titlebar, .ui-dialog label,.ui-dialog .validateTips, .ui-dialog input,.ui-dialog .ui-button{
+		font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;
+		}
+	.ui-dialog label,.ui-dialog .validateTips, .ui-dialog input,.ui-dialog .ui-button{
+		font-size:12px;
+		}
+	.ui-dialog .ui-dialog-buttonpane button {
+		cursor:default;
+		}
+	.ui-widget-header {
+		font-weight:normal;
+		font-size:14px;
+		font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;
+		}
+	.ui-state-highlight{
+		font-size:16px;
+		fornt-weight:bold;	
+		color: red; 
+		background:yellow;
+		}	
+	#openSchemaDialog{
+		overflow:hidden;
+		}		
+	#schemaLst{
+		overflow:auto;
+		}
+	#schemaLst .schemaLstItem{
+		font-weight:normal;
+		font-size:12px;
+		font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;
+		line-height: 22px;
+		padding-left:10px;
+		color: rgb(107,163,226);
+		cursor: default;
+		}
+	#schemaLst .schemaLstItem:hover{
+		background : #BBB;
+		color:#FFF;
+		border-radius:3px;
+		-moz-border-radius:3px;
+		}
+	#lblSaveOverwrite , #saveOverwrite{
+		display:inline;
+		float:right;
+		margin:5px;
+		}
+	#saveOverwrite{
+		width:10px;
+		}
+	.schemaItemDelete{
+		float:right;
+		font-size:12px;
+		font-weight:bold;
+		color:#FFF;
+		padding-right:8px;
+		}
+	.schemaItemDelete:hover{
+		color:rgb(80,146,220);
+		}
+	#generateJavascript{
+		position: relative;
+		background: #FcFcFc;
+		}
+	#generateJavascript #selectAllCode{
+		position: absolute;
+		top:94px;
+		right:36px;
+		color:#AAA;
+		font-size:10px;
+		font-weight:bold;
+		
+		}
+	#scriptGeneratedContent{
+		width:98.8%;
+		height:78%;
+		border:solid 2px;
+		border-color:#555 #CCC #CCC #555;
+		font-size:12px;
+		background: #FFF;
+		}
+	p#scriptGeneratedContent {
+		color:#3f7f7f;
+		padding: 3px;
+		}
+	#aboutDialog {
+		position: relative;
+		}
+		#aboutLogo {
+			position: absolute;
+			left: 20px;;
+			top:25px;
+			}
+		#aboutLogo a{
+			cursor:default;
+			}
+		#aboutTxt {
+			font-size:14px;
+			position: absolute;
+			left: 20px;
+			top:185px;
+			padding-right:8px;
+			}
+		#aboutTxt span{
+			font-weight:bold;
+			}
+		#aboutTxt span#nx{
+			color:#FFC806;
+			}
+
+
+/***************************end new/open/save/close schema, copy/paste/delete node DIALOG************************************/
+
+/***************************3D GRAPH************************************/
+#grapContainer {
+	font-size:13px;
+	font-weight:normal;
+	overflow:visible;
+	}
+	#grapContainer #graphExpression{
+		float:left;
+		}
+	#grapContainer #graphOption{
+		float:right;
+		}
+	#grapContainer input{
+		display:inline;
+		width:15px;
+		margin-right:10px;
+		margin-top:2px;
+		}
+	#grapContainer input#equationinput{
+		display:inline;
+		width:515px;
+		padding:3px;
+		margin-bottom:3px;
+		}
+/***************************end 3d graph************************************/

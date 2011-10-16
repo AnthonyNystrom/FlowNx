@@ -1,0 +1,404 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<title>Visual Work Flow Calculations</title>
+ 
+		
+		<link rel="shortcut icon" type="image/x-icon" href="images/favicon.png" />
+		<link type="text/css" href="tipsy/tipsy.css" rel="stylesheet" media="screen" />
+		<link type="text/css" href="css/jquery-ui-1.8.6.custom.css" rel="stylesheet" media="screen" />
+		<link type="text/css" href="css/styles.css" rel="stylesheet" media="screen" />
+		<script type="text/javascript" src="js/base64.js"></script>
+		<script type="text/javascript" src="js/canvas2image.js"></script>
+		<script type="text/javascript" src="js/json2.js"></script>
+		<script type="text/javascript" src="jscolor/jscolor.js"></script>
+		<script type="text/javascript" src="js/jquery-1.4.2.min.js"></script>
+		<script type="text/javascript" src="js/jquery-ui-1.8.5.min.js"></script>
+		<script type="text/javascript" src="tipsy/tipsy.js"></script>
+
+		<script type="text/javascript" src="js/beautify.js"></script>
+		<script type="text/javascript" src="js/jquery.syntaxhighlighter.min.js"></script>
+		<script type="text/javascript">$.SyntaxHighlighter.init();</script>
+		
+		<script type="text/javascript" src="js/jquery.copy.js"></script>
+		
+				
+		<script type="text/javascript" src="js/common.js"></script>
+		<script type="text/javascript" src="js/system.js"></script>
+		<script type="text/javascript" src="js/node.js"></script>
+		<script type="text/javascript" src="js/diagram.js"></script>
+		<script type="text/javascript" src="js/schema.js"></script>
+		<script type="text/javascript" src="js/script.js"></script>
+	</head>
+	<body >
+		<div id="pageContainer">
+			<!--================================LOGO, MENU, COMMAND BUTTON================================-->
+			<div id="headContainer">
+				<div id="logo">flow<span>Nx</span></div>
+<!--				<div id="logo">
+					<div id="flow">flow</div>
+					<div id="nx"><img alt="Nx" src="images/nx.png" /></div>
+				</div>
+
+				<div id="logo" class="hide">
+					<img alt="logo" src="images/logo.png" />
+				</div>
+-->
+				<div id="userNav" class="hide">
+					Logged in as <b>Admin</b>
+					<span>|</span> <a href="#">Settings</a>
+					<span>|</span> <a href="#">Logout</a><br>
+				</div>
+				<div id="tab">
+					<div id="tabThumbnailContainer">
+						<div id="thumbScrollLeft" class="thumbScroll hide"></div> 
+						<div id="thumbScrollRight" class="thumbScroll hide"></div>
+						<div id="thumbList">
+							<ul id="tabThumbnail"></ul>
+						</div>
+					</div>
+					<div id="tabTitle">	
+						<div id="cmdBtnBar">
+							<div title="Build 3D Graph for Schema" class="cmdBtn" id="schema2GraphBtn"><img  alt="Schema to Graph"  src="images/schema-to-graph.jpg" /></div>
+							<div title="Generate Script for Schema" class="cmdBtn" id="schema2ScriptBtn"><img  alt="Generate Script for Schema"  src="images/schema-to-script.png" /></div>
+							<div title="Build Expression for Schema" class="cmdBtn" id="schema2ExpressionBtn"><img  alt="Schema to Expression"  src="images/schema-to-expression.png" /></div>
+							<div  title="Compute Schema Value" class="cmdBtn" id="schema2ValBtn"><img alt="Compute Schema Value" src="images/schema-to-val.png" /></div>
+							<div  title="Build Schema from Expression" class="cmdBtn" id="expression2SchemaBtn"><img alt="Draw Schema for Expression" src="images/expression-to-schema.png" /></div>
+							<div id="schema2ExpressionTxt"><input type=text value="exp(-(x*3)^2)/3 + exp(-(y*3)^2)/3" /></div>
+						</div>
+						<div  id="nodeCmdBtnBar">
+							<img id="copy" title="Copy Node" alt="Copy Node" src="images/copy.png"/>
+							<img id="paste" title="Paste Node" alt="Paste Node" src="images/paste.png"/>
+							<img id="cut" title="Delete Node" alt="Delete Node" src="images/cut.png"/>
+						</div>					
+					</div>
+				</div>
+				<div id="menuBtn">
+					<img id="newSchema" title="Create New Schema" alt="Create New Schema" src="images/new.png"/>
+					<img id="openSchema" title="Open Schema" alt="Open Schema" src="images/open.png"/>
+					<img id="saveSchema" title="Save Schema" alt="Save Schema" src="images/save.png"/>
+					<img id="deleteSchema" title="Close Schema" alt="Close Schema" src="images/delete.png"/>
+				</div>
+			</div>
+	
+			<div id="contentContainer">
+				<!--================================DIAGRAM/SCHEMA================================-->
+				<div id="diagramContainer"><!-- Start diagram -->
+					<div id="contentBgColor"></div>
+					<canvas id="diagramCanvas" width=3600 height=2600></canvas>
+					<!-- ||||||||| -->
+					<div id="diagram">
+					</div>
+					<div id="lockDiagram" class="hide"></div>
+				</div><!-- End diagram, use to ensure canvas and diagram completely over eachother -->
+	
+				<!--=================================PROPERTIES BOX===============================-->			
+				<div id="properties" class="movableBox">
+					<div class="boxTitle" id="propBoxHandle">Properties</span></div>
+					<div id="propBoxContent" class="boxContent">
+					<!-----------------begin properties box NODE---------------->
+						<div id="nodePropertiesList" class="objPropertiesList hide">
+							<!-------  ------->
+							<div class="propertiesList "><p>Appearance</p></div>
+							<div id="Appearance" class="groupPropertiesList">
+								<div class="propertiesListRow">
+									<div class="propItemTitle"><p>Background color</p></div>
+									<div class="propItemVal"><p><input id="n_bgColor" class="color" value=""></p></div>
+								</div>
+								<div class="propertiesListRow">
+									<div class="propItemTitle"><p>Title color(left)</p></div>
+									<div class="propItemVal"><p><input id="n_titleColor1" class="color" value=""></p></div>
+								</div>
+								<div class="propertiesListRow">
+									<div class="propItemTitle"><p>Title color(right)</p></div>
+									<div class="propItemVal"><p><input id="n_titleColor2" class="color" value=""></p></div>
+								</div>
+								<div class="propertiesListRow">
+									<div class="propItemTitle"><p>Border width</p></div>
+									<div class="propItemVal"><p><input id="n_borderWidth"   value=""></p></div>
+								</div>
+								<div class="propertiesListRow">
+									<div class="propItemTitle"><p>Border color</p></div>
+									<div class="propItemVal"><p><input id="n_borderColor"  class="color" value=""></p></div>
+								</div>
+								<div class="propertiesListRow">
+									<div class="propItemTitle"><p>Title font size</p></div>
+									<div class="propItemVal"><p><input id="n_titleFontSize" value=""></p></div>
+								</div>
+								<div class="propertiesListRow">
+									<div class="propItemTitle"><p>Title font color</p></div>
+									<div class="propItemVal"><p><input id="n_titleFontColor" class="color" value=""></p></div>
+								</div>
+								<div class="propertiesListRow">
+									<div class="propItemTitle"><p>Content font size</p></div>
+									<div class="propItemVal"><p><input id="n_contentFontSize" value=""></p></div>
+								</div>
+								<div class="propertiesListRow ">
+									<div class="propItemTitle"><p>Content font color</p></div>
+									<div class="propItemVal"><p><input id="n_contentColor" class="color" value=""></p></div>
+								</div>
+								<div class="propertiesListRow">
+									<div class="propItemTitle"><p>Height</p></div>
+									<div class="propItemVal"><p><input id="n_height" value=""></p></div>
+								</div>
+								<div class="propertiesListRow">
+									<div class="propItemTitle"><p>Width</p></div>
+									<div class="propItemVal"><p><input id="n_width" value=""></p></div>
+								</div>
+								<div id=n_Appearance_Disable class="disableList hide"></div>
+							</div>
+							<!-------  ------->
+							<!-------  ------->
+							<div class="propertiesList" ><p>Operation</p></div>
+							<div id="Operation" class="groupPropertiesList">
+								<div class="propertiesListRow">
+									<div class="propItemTitle "><p>Enable</p></div>
+									<div class="propItemVal">
+										<select id="n_Enable" value="yes">
+											<option value="yes">yes</option>
+											<option value="no">no</option>
+										</select>
+									</div>
+								</div>
+								<div class="propertiesListRow">
+									<div class="propItemTitle"><p>Movable</p></div>
+									<div class="propItemVal">
+										<select id="n_Movable" value="yes">
+											<option value="yes">yes</option>
+											<option value="no">no</option>
+										</select>
+									</div>
+								</div>
+								<div id=n_Operation_Disable class="disableList hide"></div>
+							</div>
+							<!-------  ------->
+							<!-------  ------->
+							<div class="propertiesList"><p>Data</p></div>
+							<div id="Data"  class="groupPropertiesList">
+								<div class="propertiesListRow">
+									<div class="propItemTitle"><p>Expression text</p></div>
+									<div class="propItemVal"><p><input id="n_expressionText"   value=""></p></div>
+								</div>
+								<div class="propertiesListRow">
+									<div class="propItemTitle"><p>Assigned value</p></div>
+									<div class="propItemVal"><p><input id="n_assignedVal"   value=""></p></div>
+								</div>
+								<div class="propertiesListRow">
+									<div class="propItemTitle"><p>Computed value</p></div>
+									<div class="propItemVal"><p><input DISABLED id="n_computeVal"   value=""></p></div>
+								</div>
+								<div class="disableList hide"></div>
+							</div>
+							<!-------  ------->
+						</div>
+					<!-----------------end properties box NODE---------------->
+					<!-----------------begin properties box PAGE/TAB---------------->
+						<div id="pagePropertiesList" class="objPropertiesList ">
+							<!-------  ------->
+							<div class="propertiesList "><p>Appearance</p></div>
+							<div id="pageAppearance" class="groupPropertiesList">
+								<div class="propertiesListRow">
+									<div class="propItemTitle"><p>Schema title</p></div>
+									<div class="propItemVal"><p><input id="p_title" value="Schema title"></p></div>
+								</div>
+								<div class="propertiesListRow">
+									<div class="propItemTitle"><p>Background color</p></div>
+									<div class="propItemVal"><p><input id="p_bgColor" class="color" value=""></p></div>
+								</div>
+								<div id=p_Appearance_Disable class="disableList activeDisableList hide"></div>
+							</div>
+							<!-------  ------->
+							<!-------  ------->
+							<div class="propertiesList" ><p>Operation</p></div>
+							<div id="pageOperation" class="groupPropertiesList">
+								<div class="propertiesListRow">
+									<div class="propItemTitle "><p>Enable</p></div>
+									<div class="propItemVal">
+										<select id="p_Enable" value="yes">
+											<option value="yes">yes</option>
+											<option value="no">no</option>
+										</select>
+									</div>
+								</div>
+								<div id=p_Operation_Disable class="disableList hide"></div>
+							</div>
+							<!-------  ------->
+							<!-------  ------->
+							<div class="propertiesList"><p>Data</p></div>
+							<div id="pageData"  class="groupPropertiesList">
+								<div class="propertiesListRow">
+									<div class="propItemTitle"><p>Computed value</p></div>
+									<div class="propItemVal"><p><input DISABLED id="p_computeVal"   value=""></p></div>
+								</div>
+								<div id=p_Data_Disable class="disableList  activeDisableList hide"></div>
+							</div>
+							<!-------  ------->
+						</div>
+						<div id="propBtnCmd"><div  class="normalBtn" id="applyProp">Apply</div><div class="normalBtn" id="cancelProp">Cancel</div></div>
+					<!-----------------end properties roperties box PAGE/TAB---------------->
+					</div>
+				</div><!-- End properties -->
+
+				<!--==============================TOOL BOX==================================-->			
+				<div id="toolBox" class="movableBox">
+					<div class="boxTitle" id="toolBoxHandle">Objects</span></div>
+					<div id="toolBoxContent" class="boxContent">
+					<!-----------------begin tool box content---------------->
+						<div id="paramsList" class="toolList colapse"><p>Literal</p></div>
+						<div id="Literal" class="hide">
+							<div class="toolItem" id="input_logic_boolean_0_outBool_"><p>Boolean</p></div>
+							<div class="toolItem" id="input_number_0_outNum_"><p>Number</p></div>
+						</div>
+						<div id="paramsList" class="toolList colapse"><p>Constants</p></div>			
+						<div id="Constants" class="hide">
+							<div class="toolItem" id="param_number_0_outNum_e_"><p>E</p></div>
+							<div class="toolItem" id="param_number_0_outNum_pi_"><p>PI</p></div>
+						</div>			
+						<div id="paramsList" class="toolList colapse"><p>Parameters</p></div>
+						<div id="Parameters" class="hide">
+							<div class="toolItem" id="param_logic_0_boolean_outBool_"><p>Boolean</p></div>
+							<div class="toolItem" id="param_number_0_outNum_"><p>Number</p></div>
+						</div>
+						<div id="operatorList" class="toolList colapse"><p>Operators</p></div>
+						<div id="Operators" class="hide">
+							<div class="toolItem" id="operator_2_add_inNum_outNum_"><p>add</p></div>
+							<div class="toolItem" id="operator_2_divide_inNum_outNum_"><p>divide</p></div>
+							<div class="toolItem" id="operator_2_multiple_inNum_outNum_"><p>multiple</p></div>
+							<div class="toolItem" id="operator_2_pow_inNum_outNum_"><p>pow</p></div>
+							<div class="toolItem" id="operator_2_subtract_inNum_outNum_"><p>subtract</p></div>
+						</div>			
+						<div class="toolList colapse"><p>Functions</p></div>
+						<div id="Functions" class="hide">
+							<div class="toolItem" id="function_1_abs_inNum_outNum_"><p>abs</p></div>
+							<div class="toolItem" id="function_1_acos_inNum_outNum_"><p>acos</p></div>
+							<div class="toolItem" id="function_1_asin_inNum_outNum_"><p>asin</p></div>
+							<div class="toolItem" id="function_1_atan_inNum_outNum_"><p>atan</p></div>
+							<div class="toolItem" id="function_1_ceil_inNum_outNum_"><p>ceil</p></div>
+							<div class="toolItem" id="function_1_cos_inNum_outNum_"><p>cos</p></div>
+							<div class="toolItem" id="function_1_exp_inNum_outNum_"><p>exp</p></div>
+							<div class="toolItem" id="function_1_floor_inNum_outNum_"><p>floor</p></div>
+							<div class="toolItem" id="function_2_max_inNum_outNum_"><p>max</p></div>
+							<div class="toolItem" id="function_2_min_inNum_outNum_"><p>min</p></div>
+							<div class="toolItem" id="function_2_mod_inNum_outNum_"><p>mod</p></div>
+							<div class="toolItem" id="function_1_log_inNum_outNum_"><p>log</p></div>
+							<div class="toolItem" id="function_1_log1_inNum_outNum_"><p>log10</p></div>
+							<div class="toolItem" id="function_1_round_inNum_outNum_"><p>round</p></div>
+							<div class="toolItem" id="function_1_sin_inNum_outNum_"><p>sin</p></div>
+							<div class="toolItem" id="function_1_sqrt_inNum_outNum_"><p>sqrt</p></div>
+							<div class="toolItem" id="function_1_tan_inNum_outNum_"><p>tan</p></div>
+
+							<div class="toolItem" id="function_logic_2_and_inBool_outBool_"><p>and</p></div>
+							<div class="toolItem" id="function_logic_1_not_inBool_outBool_"><p>not</p></div>
+							<div class="toolItem" id="function_2_equal_inNum_outBool_"><p>equal</p></div>
+							<div class="toolItem" id="function_2_greater_inNum_outBool_"><p>greater</p></div>
+							<div class="toolItem" id="function_2_greaterEqual_inNum_outBool_"><p>greater or equal</p></div>
+							<div class="toolItem" id="function_2_less_inNum_outBool_"><p>less</p></div>
+							<div class="toolItem" id="function_2_lessEqual_inNum_outBool_"><p>less or equal</p></div>
+							<div class="toolItem" id="function_2_notEqual_inNum_outBool_"><p>not equal</p></div>
+							<div class="toolItem" id="function_logic_2_or_inBool_outBool_"><p>or</p></div>
+							<div class="toolItem" id="function_logic_2_xor_inBool_outBool_"><p>xor</p></div>
+						</div>			
+						<div class="toolList colapse"><p>Programs</p></div>
+						<div id="Programs" class="hide">
+							<div class="toolItem" id="program_1_"><p>Program</p></div>
+							<div class="toolItem" id="program_input_1_"><p>Program Input</p></div>
+							<div class="toolItem" id="program_output_1_"><p>Program Output</p></div>
+						</div>
+					<!-----------------end tool box content---------------->					
+					</div>
+				</div><!-- End Toolbox-->
+			</div>
+			<!--================================FOOTER================================-->
+			<div id="footer">
+        		<p>Copyright &copy; 2011 <a href="http://www.7touchinc.com">7touch, Inc</a>.&nbsp;&nbsp;|&nbsp;&nbsp;<a id="about" href="#">About</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="http://www.7touchinc.com/contact">Contact</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="http://www.7touchinc.com/privacy">Privacy</a></p>
+		    </div>
+			
+			<!--================================OUTPUT BOX================================-->			
+			<div id="output"><p></p></div>
+			<div id="addingNode"></div>
+			
+			<!--================================DIALOG: NEW SCHEMA,..; COPY NODE ================================-->
+			<div id="dialogWrapper" class="hide"></div>
+			
+			<!-- NEW schema dailog -->
+			<div id="newSchemaDailog" title="Create new schema" class="hide">
+				<p class="validateTips">Name should be unique.</p>
+				<form>
+				<fieldset>
+					<label for="newName">Name</label>
+					<input type="text" name="newName" id="newName" class="text ui-widget-content ui-corner-all" />
+				</fieldset>
+				</form>
+			</div>
+			<!-- SAVE schema dailog -->
+			<div id="saveSchemaDailog" title="Save schema"  class="hide">
+				<p class="validateTips">Name should be unique.</p>
+				<form>
+				<fieldset>
+					<label for="saveName">Name</label>
+					<input type="text" name="saveName" id="saveName" class="text ui-widget-content ui-corner-all" />
+					<input id="saveOverwrite" type="checkbox" checked="checked" name="saveOverwrite" class="" />
+					<label id="lblSaveOverwrite" for="saveOverwrite">Overwrite exsiting</label>
+				</fieldset>
+				</form>
+			</div>
+			<!-- DELETE schema dailog -->
+			<div id="deleteSchemaDailog" title="Close schema"  class="hide">
+				<p class="validateTips">Are you sure you want to close the schema?</p>
+			</div>
+			<!-- OPEN chema dailog -->
+			<div id="openSchemaDialog" title="Open schema"  class="hide">
+				<p class="validateTips">Available schemas</p>
+				<div id="schemaLst"></div>
+			</div>
+			<!-- NO NODE SELECTION error-->
+			<div id="noNodeSelectionErr" title="Node selection error"  class="hide">
+				<p class="validateTips">No node slected, select targeted node for action.</p>
+			</div>
+			<!-- GENERATE JAVASCRIPT-->
+			<div id="generateJavascript" title="Generate javascript"  class="hide">
+				<p class="validateTips">If the diagram has no parameter you can call the generated function directly.
+				Otherwise you should wrap all the parameters in an anonymous object.<br />
+				&nbsp;&nbsp;&nbsp;+ Define an anonymous wraping object: params={name:"Jonh",age:"10"};<br />  
+				&nbsp;&nbsp;&nbsp;+ Call generated function: flowNxGenerateFunction(params); <br /> 
+				&nbsp;&nbsp;&nbsp;While name and age are two parameters in the diagram (as example).<br /></p>
+				<div id="selectAllCode">Double click on the textbox to select all of the code.</div>
+				  <code class='language-javascript' id='scriptGeneratedContent'>
+				  </code>
+			</div>
+
+
+			<!-- ABOUT DIALOG -->
+			<div id="aboutDialog" title="About flowNx"  class="hide">
+				<div id="aboutLogo"><a href="https://github.com/7TouchGroup/flowNx" title="Goto 7Touch on githup" ><img src="images/github-logo.png" alt="7Tough on githup"/></a></div>
+				<div id="aboutTxt">
+					<p class="validateTips"><span>Flow</span><span id="nx">Nx</span> is a pure HTML5 based expression evaluator and a visual flow based expression builder.</p>
+				</div>
+			</div>
+			<!-- GRAPH CONTAINER error-->
+			<!--------------------------------------------->
+
+			<div id="grapContainer" title="3D Graph of expression" >
+							<div id="graphExpression"><input readonly="readonly" id="equationinput" value=""></div>
+							<div id="graphOption" class="hide">
+								smooth curves<input checked="checked" id="smoothcheck" type="checkbox" />
+								xy<input checked="checked" id="radio_xy" name="xyradios" type="radio" />
+								x<input id="radio_x" name="xyradios" type="radio">
+								y<input id="radio_y" name="xyradios" type="radio">
+							</div>
+				<div class="canvasDiv">
+					<canvas id="canvas" width="850" height="600"></canvas>
+				</div>
+				
+				<script src="js/pre3d.js"></script>
+				<script src="js/demo_utils.js"></script>
+				<script src="js/graphycalccalculator.js"></script>
+				<script src="js/graphycalc.js"></script>
+			</div>
+
+			<!--------------------------------------------->
+		</div>	
+	</body>
+	<script type="text/javascript" src="js/dialog.js"></script>
+	
+</html>
